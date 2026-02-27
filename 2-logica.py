@@ -2,24 +2,10 @@ print('olá mundo')
 # Interface gráfica no python
 # Tkinter - vem com a instalação do interpretador do python
 import tkinter as tk
-from pathlib import Path
 
 COR_FUNDO = "#1A1A1E"
 COR_TEXTO = "#C5CED3"
 
-def registar():
-    nome = nome_entry.get()
-    password = password_entry.get()
-
-    if password=="" or nome =="":
-        msg_label.configure(text='Por favor preencha os dados', fg='#bb3939')
-    else:
-        ficheiro = Path('dados.txt')
-        with ficheiro.open('w', encoding='utf-8', errors='ignore') as file:
-            file.write(f'Nome: {nome} \n')
-            file.write(f'Nome: {password}')
-            msg_label.configure(text='Dados registados com sucesso', fg='#39bb46')
-        
 # Criar a variável que representa a janela
 root = tk.Tk()
 root.configure(bg=COR_FUNDO) # mudar a cor da janela
@@ -38,21 +24,17 @@ nome_label.pack()
 nome_entry = tk.Entry(root, width=30)
 nome_entry.pack(pady=20)
 
+
 # Campo para password
 password_label = tk.Label(root,text='Digite a sua password', bg=COR_FUNDO, fg = COR_TEXTO,
                       font=('Arial', 14, 'bold'))
 password_label.pack()
-password_entry = tk.Entry(root, width=30, show='*')
+password_entry = tk.Entry(root, width=30)
 password_entry.pack(pady = 20)
 
 # Botão
-registar_button = tk.Button(root,text='Registar', width=10, command=registar)
-registar_button.pack(pady=(25,0))
-
-# Mensagem informativa
-msg_label = tk.Label(root,text='Digite o seu nome', bg=COR_FUNDO, font=('Arial', 20, 'bold'))
-msg_label.pack(pady=30)
-
+registar_button = tk.Button(root,text='Registar', width=10)
+password_entry.pack(pady=(25,0))
 
 # Iniciar o ciclo de eventos, ou seja, abrir a janela
 root.mainloop()
